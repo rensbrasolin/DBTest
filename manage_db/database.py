@@ -4,7 +4,7 @@
 # Mas no início, pode deixar direto no código enquanto estiver testando localmente.
 
 
-# Aqui dou GET no DB, e depois importo ele onde precisar para mexer nele
+# Aqui dou GET no DB, e depois o importo onde precisar, para mexer nele.
 
 
 # ------------------------------------------------------------------------
