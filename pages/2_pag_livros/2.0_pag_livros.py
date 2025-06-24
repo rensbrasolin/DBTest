@@ -9,7 +9,7 @@ st.title("Página - Tabela Livros 📚")
 # ----------------------------------------------------------- Conecta ao banco e carrega dados
 
 session = SessionLocal()
-livros = session.query(Livro).all()
+lista_livros = session.query(Livro).all()
 session.close()
 
 # Prepara os dados em formato de DataFrame
@@ -21,7 +21,7 @@ dados = [
         "Qtde Páginas": livro.qtde_paginas,
         "ID Usuário": livro.id_usuario,
     }
-    for livro in livros
+    for livro in lista_livros
 ]
 
 df_livros = pd.DataFrame(dados)
@@ -46,7 +46,7 @@ with col1:
 with col2:
     with st.container(border=True):
         # Dicionário {título: id} com opção em branco no topo
-        opcoes = {"": None, **{livro.titulo: livro.id for livro in livros}}
+        opcoes = {"": None, **{livro.titulo: livro.id for livro in lista_livros}}
 
         # Dropdown de títulos (inicia em branco)
         livro_titulo_selecionado = st.selectbox(
@@ -64,4 +64,4 @@ st.markdown("---")
 
 # ----------------------------------------------------------- Exibição da tabela de livros
 st.subheader("Lista de livros")
-AgGrid(df_livros)
+AgGrid(df_livros) # agrid fica aparecendo for trial use only. talvez melhor tentar com st.data_editor

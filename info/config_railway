@@ -1,0 +1,13 @@
+gerar domínio: clicar e gerar, depois ver se dá pra customizar url
+
+porta: 8080. depois que reconheceu meu projeto apareceu automaticamente a opção para eu escolher 8080.
+
+Custom Start Command:
+streamlit run main.py --server.port=$PORT --server.address=0.0.0.0
+
+Visibility:
+Tornar publico
+
+----------------------------------------------------------------------------
+pip freeze > requirements.txt
+

@@ -1,0 +1,117 @@
+Códigos sensíveis para administrar o DB
+Depois esses códigos podem virar funções se necessário
+
+--------------------------------- Exclui tabela c/ cmd SQL, depois descobri que segurar shift e clicar na tab tbm exclui
+from sqlalchemy import text
+
+with db.connect() as conn:
+    conn.execute(text("DROP TABLE IF EXISTS nome_da_tabela CASCADE"))
+    conn.commit()
+
+-------------------------------------------------------------------- importa tabela e cols (classes) criada e Dá commit
+# Não aceita add col após criada a tabela. Isso se faz com outro comando.
+
+from manage_db.database import db, Base
+from manage_db.models import Usuario, Livro # importa o modelo para registrar. Fazer sempre com todos os modelos.
+
+# Cria todas as tabelas definidas com Base
+Base.metadata.create_all(bind=db)
+
+------------------------------------------------------------------------ Com CMD SQL Insere uma col na tab que já existe
+from sqlalchemy import text
+
+with db.connect() as conn:
+    conn.execute(text("ALTER TABLE usuarios ADD COLUMN admin BOOLEAN DEFAULT FALSE"))
+    conn.commit()
+
+
+----------------------------------------------------------------- Cód. Lira que inclui um admin c/ senha cripto
+from models import session, Usuario
+import streamlit_authenticator as stauth
+
+senha_criptografada = stauth.Hasher(["123123"]).generate()[0]
+usuario = Usuario(nome="Lira", senha=senha_criptografada, email="lira2@gmail.com", admin=False)
+session.add(usuario)
+session.commit()
+------------------------------------------------------------------------------------------------------------------ CRUD
+# Não precisa ficar importando a tabela nem criando session pra cada ação como nesse código, poderia fazer 1 vez só.
+------------------------------------------------------- Create
+from manage_db.models import Usuario
+
+# Cria uma nova sessão
+session = SessionLocal()
+
+
+# Cria um novo usuário
+novo_usuario = Usuario(
+    # id=Usuário não entra com dado, pois é automático
+    nome="Tony Soprano",
+    email="tsoprano@email.com",
+    senha="cosa13nostra",
+    # ativo=True # Não obrigatório pois padrão é True
+)
+
+# Adiciona e envia para o banco
+session.add(novo_usuario)
+session.commit()
+
+# Opcional: exibe para confirmar
+print(f"Usuário inserido com ID: {novo_usuario.id}")
+
+# Encerra a sessão
+session.close()
+------------------------------------------------------- Read
+from manage_db.models import Usuario
+
+# Cria uma nova sessão
+session = SessionLocal()
+
+
+lista_usuarios = session.query(Usuario).all()
+
+usuario_tonysoprano = session.query(Usuario).filter_by(email="tsoprano@email.com").first()
+
+print(lista_usuarios)
+print(usuario_tonysoprano)
+print(usuario_tonysoprano.nome)
+print(usuario_tonysoprano.email)
+
+# Encerra a sessão
+session.close()
+------------------------------------------------------- Update
+from manage_db.models import Usuario
+
+# Cria uma nova sessão
+session = SessionLocal()
+
+# Lendo para achar o usuario, através de alguma referência.
+lista_usuarios = session.query(Usuario).all()
+usuario_tonysoprano = session.query(Usuario).filter_by(email="tsoprano@email.com").first()
+
+
+# Update
+usuario_tonysoprano.nome = "Antony Soprano"
+
+session.add(usuario_tonysoprano)
+session.commit()
+
+# Encerra a sessão
+session.close()
+
+------------------------------------------------------- Delete
+from manage_db.models import Usuario
+
+# Cria uma nova sessão
+session = SessionLocal()
+
+# Lendo para achar o usuario, através de alguma referência.
+lista_usuarios = session.query(Usuario).all()
+usuario_tonysoprano = session.query(Usuario).filter_by(email="tsoprano@email.com").first()
+
+
+session.delete(usuario_tonysoprano)
+
+session.commit()
+
+# Encerra a sessão
+session.close()

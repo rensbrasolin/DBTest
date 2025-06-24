@@ -12,6 +12,7 @@ class Usuario(Base):
     email = Column(String, nullable=False, unique=True)  # Email único, obrigatório
     senha = Column(String, nullable=False)  # Senha do usuário, obrigatório
     ativo = Column(Boolean, default=True)  # Campo para ativar/desativar o usuário
+    admin = Column(Boolean, default=False)
 
 
     # Relacionamento com os livros cadastrados pelo usuário. (usuario.livros/livro.usuarios)
@@ -21,8 +22,8 @@ class Usuario(Base):
         cascade="all, delete-orphan"  # Ao deletar um usuário, apaga também seus livros
     )
 
-    def __repr__(self): # Nem todoscampos retornam aqui. depois perguntar pq, pro gpt
-        return f"<Usuario(id={self.id}, nome='{self.nome}', email='{self.email}', ativo={self.ativo})>"
+    def __repr__(self): # Nem todos campos retornam aqui. depois perguntar pq, pro gpt
+        return f"<Usuario(id={self.id}, nome='{self.nome}', email='{self.email}', senha='{self.senha}', ativo={self.ativo}, admin={self.admin})>"
 
 
 # ---------------------------------------------------------------------------------------- Modelo ORM da tabela 'livros'
@@ -46,4 +47,4 @@ class Livro(Base):
     )
 
     def __repr__(self):
-        return f"<Livro(id={self.id}, titulo='{self.titulo}', paginas={self.qtde_paginas}, usuario={self.id_usuario})>"
+        return f"<Livro(id={self.id}, titulo='{self.titulo}', qtde_paginas={self.qtde_paginas}, id_usuario={self.id_usuario})>"
