@@ -48,3 +48,11 @@ class Livro(Base):
 
     def __repr__(self):
         return f"<Livro(id={self.id}, titulo='{self.titulo}', qtde_paginas={self.qtde_paginas}, id_usuario={self.id_usuario})>"
+
+
+# ------------------------------------------------------------------------------------ Comentários campos de uma tabela
+# Campos com default=... ou autoincrement=True são autogerados.
+#
+# Campos de chave estrangeira precisam ser preenchidos por você, porque o sistema não tem como saber qual usuário logado deve ser usado.
+#
+# A lógica do usuário logado é responsabilidade da aplicação (Streamlit), não do banco nem do SQLAlchemy.

@@ -5,7 +5,9 @@ from st_aggrid import AgGrid
 from manage_db.database import SessionLocal
 from manage_db.models import Usuario
 
-st.title('Página - Tabela Usuários')
+st.title('🧑️ Usuários')
+st.markdown("---")
+
 
 # Cria uma nova sessão de banco de dados (boa prática: criar e fechar em cada uso)
 session = SessionLocal()
@@ -41,9 +43,9 @@ with col1:
     with st.container(border=True):
         # Botão para ir para a página de criação de novo livro
         st.page_link(
-            label="➕ Adicionar novo usuário",
+            label="Adicionar novo usuário",
             page="pages/1_pag_usuarios/1.1_pag_usuarios_create.py",
-            icon="🙋‍♂"
+            icon="➕"
         )
 
 # Editar
@@ -62,13 +64,16 @@ with col2:
         )
 
         # Botão de editar, só funciona se um livro for selecionado
-        if usuario_nome_selecionado and st.button("✏️ Editar Usuário Selecionado"):
+        if usuario_nome_selecionado and st.button("✏️️ Editar Usuário Selecionado"):
             st.session_state.id_usuario_para_editar = opcoes[usuario_nome_selecionado]
             st.switch_page("pages/1_pag_usuarios/1.2_pag_usuarios_update.py")
 
-# ----------------------------------------------------------- Separador visual
-st.markdown("---")
-
-
 # --------------------------------------------------------------------------------------- Exibição df
 AgGrid(df_usuarios)
+
+# ------------------------------------------------------------------------------------------ Permissões
+with st.expander("Permissões"):
+    with st.container(border=True):
+        st.subheader('Não administrador')
+        st.write("- No menu principal, não tem acesso à página 'Usuários'.")
+        st.write("- Na página 'Editar Livros', não tem acesso à exclusão.")

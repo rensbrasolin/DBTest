@@ -8,6 +8,13 @@ streamlit run main.py --server.port=$PORT --server.address=0.0.0.0
 Visibility:
 Tornar publico
 
+---------------------------------------------------------------
+Depois de um tempo resolvi mudar a url
+
+editar:
+de      dbtest-production-d45a.up.railway.app
+para    renasdbtest.up.railway.app
+
 ----------------------------------------------------------------------------
 pip freeze > requirements.txt
 

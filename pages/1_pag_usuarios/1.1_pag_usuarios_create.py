@@ -3,7 +3,7 @@ from manage_db.database import SessionLocal
 from manage_db.models import Usuario
 from streamlit_authenticator.utilities.hasher import Hasher  # Criptografia da senha
 
-st.title("📘 Adicionar Novo Usuário")
+st.title("➕🧑️ Adicionar Novo Usuário")
 session = SessionLocal()
 
 with st.form("form_usuario", clear_on_submit=True):
@@ -31,4 +31,4 @@ with st.form("form_usuario", clear_on_submit=True):
 
 session.close()
 st.page_link("pages/1_pag_usuarios/1.0_pag_usuarios.py",
-             label="⬅️ Voltar para consulta de usuários", icon="🙋‍♂️")
+             label=" Voltar para consulta de usuários", icon="⬅️")

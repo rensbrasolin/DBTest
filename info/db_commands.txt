@@ -1,5 +1,26 @@
 Códigos sensíveis para administrar o DB
-Depois esses códigos podem virar funções se necessário
+Depois esses códigos podem virar funções se necessário.
+
+
+# ------------------------------------------ ANTES DE FAZER DEPLOY, SEMPRE EXCLUIR, SE PERDER URL É SÓ PEGAR NO RAILWAY
+Acesso direto pela URL do DB:
+Esse código nao é para rodar no db_run.py, mas sim no database.py
+
+# 1 acesso local: Direto pela URL do DB.
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, declarative_base
+
+DATABASE_PUBLIC_URL = "copiar do serviço do DB e colar aqui"
+
+# Cria a conexão com o banco de dados usando a URL pública fornecida pelo Railway
+db = create_engine(DATABASE_PUBLIC_URL)
+
+# Cria uma fábrica de sessões para interações com o banco (ex: consultas, inserções)
+SessionLocal = sessionmaker(bind=db)
+
+# Classe base usada para definir os modelos das tabelas (ORM)
+Base = declarative_base()
 
 --------------------------------- Exclui tabela c/ cmd SQL, depois descobri que segurar shift e clicar na tab tbm exclui
 from sqlalchemy import text
