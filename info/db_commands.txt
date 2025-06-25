@@ -3,7 +3,7 @@ Depois esses códigos podem virar funções se necessário.
 
 
 # ------------------------------------------ ANTES DE FAZER DEPLOY, SEMPRE EXCLUIR, SE PERDER URL É SÓ PEGAR NO RAILWAY
-Acesso direto pela URL do DB:
+Acesso direto pela URL pública do DB (tem que ser a pública):
 Esse código nao é para rodar no db_run.py, mas sim no database.py
 
 # 1 acesso local: Direto pela URL do DB.

@@ -164,12 +164,15 @@ with st.sidebar:
 
 
 
-# # ---------------------------------------------------------------------------------------------------------------------
+# # -------------------------------------------------------------------------------------------------------------------
 # # Não se preocupar com frontend agora, fazer organizado mas básico. Depois ver com o cliente o que exigirá.
 
 # ver variavel de ambiente do DB. acho que só precisa dessa
+# Feito!
+# Mas precisa criar um código melhor com variavel no arq .env e puxar de lá. Criar gitignore pra garantir.
+# Qdo chegar a hora, pedir ajuda pro GPT.
 
-# cadastrar usuarios denis/vanessa
+
 # na nuvem: ver como pcs diferentes e com mais de 1 usuario logado funcionam.
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

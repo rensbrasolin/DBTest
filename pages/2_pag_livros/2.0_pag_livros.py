@@ -65,12 +65,5 @@ with col2:
                 st.switch_page("pages/2_pag_livros/2.2_pag_livros_update_naoadmin.py")
 
 # ----------------------------------------------------------- Exibição da tabela de livros
-AgGrid(df_livros) # agrid fica aparecendo for trial use only. talvez melhor tentar com st.data_editor
-
-# # Exibição condicional baseada na flag admin do usuário
-# if st.session_state.usuario.admin:
-#     # # Aqui: mesmo conteúdo provisório para admins
-#     # st.page_link("pages/0_homepage/0_homepage.py", label="🏠 Início")
-#     # st.page_link("pages/1_pag_usuarios/1.0_pag_usuarios.py", label="🧑️ Usuários")
-#     # st.page_link("pages/2_pag_livros/2.0_pag_livros.py", label="📚 Livros")
-# else:
+# AgGrid(df_livros, height=400, width=400, fit_columns_on_grid_load=False) # agrid fica aparecendo for trial use only. talvez melhor tentar com st.data_editor
+st.dataframe(df_livros, use_container_width=True, hide_index=True)

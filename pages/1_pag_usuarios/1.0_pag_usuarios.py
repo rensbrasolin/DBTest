@@ -69,11 +69,15 @@ with col2:
             st.switch_page("pages/1_pag_usuarios/1.2_pag_usuarios_update.py")
 
 # --------------------------------------------------------------------------------------- Exibição df
-AgGrid(df_usuarios)
-
+# AgGrid(df_usuarios, height=400, width=150)
+st.dataframe(df_usuarios, use_container_width=True, hide_index=True)
 # ------------------------------------------------------------------------------------------ Permissões
 with st.expander("Permissões"):
     with st.container(border=True):
         st.subheader('Não administrador')
+        # Para treinar, OK! Mas permissão correta da pag Usuários seria:
+        #     Admin - Vê todos os usuários: Inclui, Edita só o seu, Exclui.
+        #     Não Admin - Vê apenas ao seu próprio usuário: Não Inclui, Edita, Não exclui.
         st.write("- No menu principal, não tem acesso à página 'Usuários'.")
+
         st.write("- Na página 'Editar Livros', não tem acesso à exclusão.")

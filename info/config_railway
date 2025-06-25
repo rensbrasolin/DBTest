@@ -17,4 +17,5 @@ para    renasdbtest.up.railway.app
 
 ----------------------------------------------------------------------------
 pip freeze > requirements.txt
+mudar get no DB a depender de acesso local ou nuvem
 
